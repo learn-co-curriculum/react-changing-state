@@ -1,25 +1,29 @@
 # React Changing State
 
+## Objectives
+
+1. Practicing updating state in React
+2. Practice passing state through props
+3. Describe how React rerenders on state changes
+
 ## Overview
 
-React allows you to structure your application using small, reusable components,
-but React isn't really just about creating static pages, it's about building
-**react**ive user interfaces that enable you to coordinate complex user
-interactions.
+React allows us to structure applications using small, reusable components, but
+React isn't just about creating static pages, it's about building **react**ive
+user interfaces that enable us to coordinate complex user interactions.
 
-In this lesson we will be learning about how you can update the state of
-components. You are going to learn about the difference between `state` and
-`props` and what happens when state changes in your application occur.
+In this lesson we will be learning about how we can update the state of
+components.
 
 ## State vs Props
 
 Managing state is hard. React allows you to encapsulate two different "kinds" of
 state: "internal" state that can only be mutated and accessed by the component
-that manages it (`state`) and "external" state that gets passed down to the
-component that renders it (`props`). This sounds way more complicated than it
-actually is, so let's take a step back and look at a simple example: A blog. The
-following examples are going to concentrate on a `Blog` component that renders
-multiple `BlogPost`s. Visually, this might look something like this:
+that manages it (`state`) and date that gets passed down to the component that
+renders it (`props`). This sounds way more complicated than it actually is, so
+let's take a step back and look at a simple example: A blog. The following
+examples are going to concentrate on a `Blog` component that renders multiple
+`BlogPost`s. Visually, this might look something like this:
 
 ![Blog](./diagrams/overview.png)
 
@@ -60,80 +64,8 @@ class Blog extends React.Component {
 ```
 
 This is incredibly powerful, since it allows us to gradually remove complexity
-by re-structuring our application into smaller, easier to test units.
-
-The above component only consists of a `render` function, it doesn't have any
-**internal** state. You give it some data and it renders a component. **That's
-it.** Because it only accepts props and only _exists_, we can write this
-component as a simple (arrow) function:
-
-```js
-class BlogPost extends React.Component {
-    render () {
-        return (
-            <article>
-                <h1>{this.props.title}</h1>
-                <p>{this.props.body}</p>
-            </article>
-        )
-    }
-}
-```
-
-is equivalent to:
-
-```js
-function BlogPost (props) {
-    return (
-        <article>
-            <h1>{this.props.title}</h1>
-            <p>{this.props.body}</p>
-        </article>
-    )
-}
-```
-
-which can also be written as an arrow function:
-
-```js
-const BlogPost = props =>
-    <article>
-        <h1>{props.title}</h1>
-        <p>{props.body}</p>
-    </article>
-```
-
-or using destructured props:
-
-```js
-const BlogPost = ({title, body}) =>
-    <article>
-        <h1>{title}</h1>
-        <p>{body}</p>
-    </article>
-```
-
-Because the above component can be written as a single function that doesn't
-rely on any **internal state** or component-lifecycle (more on that later), we
-call those components _pure_ and _stateless_. **Purity** is an important concept
-in programming and not something specific to React. A function can be considered
-to be _pure_ if — and only if — it:
-
-1. always returns the same result when called with the same arguments:
-
-    In other words, `<BlogPost title={'My title'} body={'My body'} />` is always
-    going to _return_ the exact same result. It doesn't matter when or "where"
-    we render the component: The only aspect that the component itself cares
-    about are its props.
-
-2. doesn't have any side effects:
-
-    Typically, your component's `render` function shouldn't have any fancy logic
-    that starts your coffee machine or loads data from your API. In functional
-    programming, when we talk about "side effects", we mean mutation of some
-    form of external state. Sounds fancy, but essentially it means pure
-    functions can't load data from an API or update some global variable (such
-    as `localStorage`).
+by re-structuring our application into smaller, easier to test units. `props`
+decouple our components.
 
 ### Internal State
 
@@ -167,10 +99,9 @@ Instead we typically want to dynamically load the data from some API endpoint,
 for instance `GET /api/posts`. So whenever we render a new blog component, we
 do a XHR call and load the blog posts that we want to render.
 
-In React, the function that gets executed once a component has been "rendered"
-(= created) is called `componentDidMount`. `componentDidMount` is a lifecycle
-method, as such it is **not** available for pure components (such as the
-`BlogPost` component that we defined using an arrow function):
+**Remember:** `componentDidMount` is a lifecycle method, as such it is **not**
+available to pure components (such as the `BlogPost` component that we defined
+using an arrow function above).
 
 ```js
 class Blog extends React.Component {
