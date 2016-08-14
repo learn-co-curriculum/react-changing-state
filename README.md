@@ -35,14 +35,14 @@ returns it:
 
 ```js
 class BlogPost extends React.Component {
-    render () {
-        return (
-            <article>
-                <h1>{this.props.title}</h1>
-                <p>{this.props.body}</p>
-            </article>
-        )
-    }
+  render () {
+    return (
+      <article>
+        <h1>{this.props.title}</h1>
+        <p>{this.props.body}</p>
+      </article>
+    );
+  }
 }
 ```
 
@@ -52,14 +52,14 @@ the `BlogPost` component, we can simply give it a `title` and `body`:
 
 ```js
 class Blog extends React.Component {
-    render () {
-        return (
-            <div>
-                <BlogPost title={'Hello World!'} body={'Hello, this is my blog.'} />
-                <BlogPost title={'Good bye!'} body={'I\'m busy. I\'m shutting this blog down.'} />
-            </div>
-        )
-    }
+  render () {
+    return (
+      <div>
+        <BlogPost title={'Hello World!'} body={'Hello, this is my blog.'} />
+        <BlogPost title={'Good bye!'} body={'I\'m busy. I\'m shutting this blog down.'} />
+      </div>
+    );
+  }
 }
 ```
 
@@ -80,14 +80,14 @@ actually come from?
 
 ```js
 class Blog extends React.Component {
-    render () {
-        return (
-            <div>
-                <BlogPost title={'Hello World!'} body={'Hello, this is my blog.'} />
-                <BlogPost title={'Good bye!'} body={'I\'m busy. I\'m shutting this blog down.'} />
-            </div>
-        )
-    }
+  render () {
+    return (
+      <div>
+        <BlogPost title={'Hello World!'} body={'Hello, this is my blog.'} />
+        <BlogPost title={'Good bye!'} body={'I\'m busy. I\'m shutting this blog down.'} />
+      </div>
+    );
+  }
 }
 ```
 
@@ -105,21 +105,21 @@ using an arrow function above).
 
 ```js
 class Blog extends React.Component {
-    componentDidMount () {
-        fetch('http://localhost:4000/api/posts')
-            .then(response => response.json())
-            .then(posts => {
-                console.log('Yey! I got some posts!', posts)
-            })
-    }
-    render () {
-        return (
-            <div>
-                <BlogPost title={'Hello World!'} body={'Hello, this is my blog.'} />
-                <BlogPost title={'Good bye!'} body={'I\'m busy. I\'m shutting this blog down.'} />
-            </div>
-        )
-    }
+  componentDidMount () {
+    fetch('http://localhost:4000/api/posts')
+      .then(response => response.json())
+      .then(posts => {
+          console.log('Yey! I got some posts!', posts);
+      });
+  }
+  render () {
+    return (
+      <div>
+          <BlogPost title={'Hello World!'} body={'Hello, this is my blog.'} />
+          <BlogPost title={'Good bye!'} body={'I\'m busy. I\'m shutting this blog down.'} />
+      </div>
+    );
+  }
 }
 ```
 
@@ -141,18 +141,18 @@ So let's change our component to update the state of the blog component once we
 receive the requested blog posts from our API:
 
 ```js
-    componentDidMount () {
-        fetch('http://localhost:4000/api/posts')
-            .then(response => response.json())
-            .then(posts => {
-                console.log('Yey! I got some posts!', posts)
+  componentDidMount () {
+    fetch('http://localhost:4000/api/posts')
+      .then(response => response.json())
+      .then(posts => {
+        console.log('Yey! I got some posts!', posts);
 
-                // Let's update the state here:
-                this.setState({ posts: posts })
+        // Let's update the state here:
+        this.setState({ posts: posts });
 
-                // or shorter: this.setState({ posts })
-            })
-    }
+        // or shorter: this.setState({ posts });
+      });
+  }
 ```
 
 Now that we updated the component's state using `setState`, we want to render
@@ -160,17 +160,17 @@ our posts using the `BlogPost` component, so we need to update our component's
 render method:
 
 ```js
-    render () {
-        return (
-            <div>
-                {
-                    this.state.posts.map((post) =>
-                        <BlogPost title={post.title} body={post.body} />
-                    )
-                }
-            </div>
-        )
-    }
+  render () {
+    return (
+      <div>
+        {
+          this.state.posts.map((post) =>
+            <BlogPost title={post.title} body={post.body} />
+          )
+        }
+      </div>
+    );
+  }
 ```
 
 Keep in mind that we didn't change the `BlogPost` component *at all* — ideally
@@ -196,7 +196,7 @@ there is a good rule of thumb when laying out your application's architecture:
 * Move your state "up":
 
     In our blog example, the `BlogPost` component could also "manage" its own
-    state by doing a separate XHR request. Nevertheless, this is not an elegant
+    state by doing a separate XHR request. Nevertheless, this isn't an elegant
     solution, since the blog needs to "know" about the blog posts anyways (how
     else would it "decide" how many `<BlogPost />` components should be
     rendered in the first place?).
@@ -239,13 +239,13 @@ Let's first start off laying out our component structure:
 
 ```js
 class App extends React.Component {
-    render () {
-        return (
-            <div>
-                <Modal />
-            </div>
-        )
-    }
+  render () {
+    return (
+      <div>
+        <Modal />
+      </div>
+    );
+  }
 }
 ```
 
@@ -262,14 +262,14 @@ constructor:
 
 ```js
 class App extends React.Component {
-    constructor (props) {
-        super(props)
-        this.state = {
-            // modal should be closed on page load
-            isModalOpen: false
-        }
-    }
-    // ...
+  constructor (props) {
+    super(props);
+    this.state = {
+      // modal should be closed on page load
+      isModalOpen: false
+    };
+  }
+  // ...
 }
 ```
 
@@ -279,14 +279,14 @@ we would add a new `isOpen` prop to the `Modal` component:
 
 ```js
 class App extends React.Component {
-    // ...
-    render () {
-        return (
-            <div>
-                <Modal isOpen={this.state.isModalOpen} />
-            </div>
-        )
-    }
+  // ...
+  render () {
+    return (
+      <div>
+        <Modal isOpen={this.state.isModalOpen} />
+      </div>
+    );
+  }
 }
 ```
 
@@ -295,18 +295,18 @@ open the popup, so let's add a separate button that triggers the modal:
 
 ```js
 class App extends React.Component {
-    // ...
-    openModal () {
-        this.setState({ isModalOpen: true })
-    }
-    render () {
-        return (
-            <div>
-                <button onClick={this.openModal}>Open the modal!</button>
-                <Modal isOpen={this.state.isModalOpen} />
-            </div>
-        )
-    }
+  // ...
+  openModal () {
+    this.setState({ isModalOpen: true })
+  }
+  render () {
+    return (
+      <div>
+        <button onClick={this.openModal}>Open the modal!</button>
+        <Modal isOpen={this.state.isModalOpen} />
+      </div>
+    )
+  }
 }
 ```
 
@@ -317,14 +317,14 @@ Since `this.state.isModalOpen` evaluates to `true` now, the modal is being
 opened:
 
 ```js
-    render () {
-        return (
-            <div>
-                <button onClick={this.openModal}>Open the modal!</button>
-                <Modal isOpen={true} />
-            </div>
-        )
-    }
+  render () {
+    return (
+      <div>
+        <button onClick={this.openModal}>Open the modal!</button>
+        <Modal isOpen={true} />
+      </div>
+    );
+  }
 ```
 
 But what does our modal component actually look like? Up until now, we didn't
@@ -335,11 +335,11 @@ to add an `modal--is-open` class to its container:
 
 ```js
 const Modal = ({ isOpen }) =>
-    <div className={isOpen ? 'modal modal--is-open' ? 'modal'}>
-        <button>close</button>
+  <div className={isOpen ? 'modal modal--is-open' ? 'modal'}>
+    <button>close</button>
 
-        <p>Hello! I am a modal.</p>
-    </div>
+    <p>Hello! I am a modal.</p>
+  </div>
 ```
 
 Perfect! Now we can simply specify whether or not the modal is open using its
@@ -358,14 +358,14 @@ components:
 
 ```js
 class App extends React.Component {
-    // ...
-    openModal () {
-        this.setState({ isModalOpen: true })
-    }
-    closeModal () {
-        this.setState({ isModalOpen: false })
-    }
-    // ...
+  // ...
+  openModal () {
+    this.setState({ isModalOpen: true })
+  }
+  closeModal () {
+    this.setState({ isModalOpen: false })
+  }
+  // ...
 }
 ```
 
@@ -376,25 +376,25 @@ so instead we have to pass the `App`'s `closeModal` method as a handler to the
 
 ```js
 const Modal = ({ isOpen, onClose }) =>
-    <div className={isOpen ? 'modal modal--is-open' ? 'modal'}>
-        <button onClick={onClose}>close</button>
+  <div className={isOpen ? 'modal modal--is-open' ? 'modal'}>
+    <button onClick={onClose}>close</button>
 
-        <p>Hello! I am a modal.</p>
-    </div>
+    <p>Hello! I am a modal.</p>
+  </div>
 ```
 
 ```js
 class App extends React.Component {
-    // ...
-    render () {
-        return (
-            <div>
-                <button onClick={this.openModal}>Open the modal!</button>
-                <Modal isOpen={this.state.isModalOpen} onClose={this.closeModal}/>
-            </div>
-        )
-    }
-    // ...
+  // ...
+  render () {
+    return (
+      <div>
+        <button onClick={this.openModal}>Open the modal!</button>
+        <Modal isOpen={this.state.isModalOpen} onClose={this.closeModal}/>
+      </div>
+    );
+  }
+  // ...
 }
 ```
 
@@ -414,16 +414,16 @@ component's public methods in the constructor (click handlers etc.):
 
 ```js
 class App extends React.Component {
-    constructor (props) {
-        super(props)
-        this.state = {
-            // modal should be closed on page load
-            isModalOpen: false
-        }
-        this.openModal = this.openModal.bind(this)
-        this.closeModal = this.closeModal.bind(this)
-    }
-    // ...
+  constructor (props) {
+    super(props);
+    this.state = {
+        // modal should be closed on page load
+        isModalOpen: false
+    };
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+  }
+  // ...
 }
 ```
 
