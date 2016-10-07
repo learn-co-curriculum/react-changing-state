@@ -15,15 +15,8 @@ user interfaces that enable us to coordinate complex user interactions.
 In this lesson we will be learning about how we can update the state of
 components.
 
-## State vs Props
-
-Managing state is hard. React allows you to encapsulate two different "kinds" of
-state: "internal" state that can only be mutated and accessed by the component
-that manages it (`state`) and date that gets passed down to the component that
-renders it (`props`). This sounds way more complicated than it actually is, so
-let's take a step back and look at a simple example: A blog. The following
-examples are going to concentrate on a `Blog` component that renders multiple
-`BlogPost`s. Visually, this might look something like this:
+The following examples are going to concentrate on a `Blog` component that
+renders multiple `BlogPost`s. Visually, this might look something like this:
 
 ![Blog](./diagrams/overview.png)
 
