@@ -92,10 +92,6 @@ Instead we typically want to dynamically load the data from some API endpoint,
 for instance `GET /api/posts`. So whenever we render a new blog component, we
 do a XHR call and load the blog posts that we want to render.
 
-**Remember:** `componentDidMount` is a lifecycle method, as such it is **not**
-available to pure components (such as the `BlogPost` component that we defined
-using an arrow function above).
-
 ```js
 class Blog extends React.Component {
   componentDidMount () {
