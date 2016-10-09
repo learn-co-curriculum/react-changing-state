@@ -323,12 +323,19 @@ As we just saw, the modal accepts an `isOpen` prop, which it then uses in order
 to add an `modal--is-open` class to its container:
 
 ```js
-const Modal = ({ isOpen }) =>
-  <div className={isOpen ? 'modal modal--is-open' ? 'modal'}>
-    <button>close</button>
+class Modal extends React.Component {
+  render() {
+    const { isOpen } = this.props;
 
-    <p>Hello! I am a modal.</p>
-  </div>
+    return (
+      <div className={isOpen ? 'modal modal--is-open' ? 'modal'}>
+        <button>close</button>
+
+        <p>Hello! I am a modal.</p>
+      </div>
+    );
+  }
+}
 ```
 
 Perfect! Now we can simply specify whether or not the modal is open using its
@@ -364,12 +371,19 @@ so instead we have to pass the `App`'s `closeModal` method as a handler to the
 `Modal`:
 
 ```js
-const Modal = ({ isOpen, onClose }) =>
-  <div className={isOpen ? 'modal modal--is-open' ? 'modal'}>
-    <button onClick={onClose}>close</button>
+class Modal extends React.Component {
+  render () {
+    const { isOpen, onClose } = this.props;
 
-    <p>Hello! I am a modal.</p>
-  </div>
+    return (
+      <div className={isOpen ? 'modal modal--is-open' ? 'modal'}>
+        <button onClick={onClose}>close</button>
+
+        <p>Hello! I am a modal.</p>
+      </div>
+    );
+  }
+}
 ```
 
 ```js
