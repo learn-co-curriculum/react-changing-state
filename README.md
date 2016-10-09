@@ -163,7 +163,7 @@ render method:
 ```
 
 Keep in mind that we didn't change the `BlogPost` component *at all* — ideally
-you should try to keep the majority of your components "stateless".
+we should try to keep the majority of our components "stateless".
 
 At this point, you might wonder why we had to use `setState`, if all `setState`
 does is... well... setting `this.state`. There is a very simple reason for that:
@@ -175,14 +175,14 @@ render function to figure out "what changed").
 ### State vs Props
 
 At this point you might wonder when to use `props` and when to use `state`, but
-there is a good rule of thumb when laying out your application's architecture:
+there is a good rule of thumb when laying out our application's architecture:
 
-* Use `state` for adding interactivity to your component:
+* Use `state` for adding interactivity to our component:
 
     A dropdown menu for example can be in an `expanded` or `collapsed` state, a
     modal dialog can be `open` or `closed`.
 
-* Move your state "up":
+* Move the state "up":
 
     In our blog example, the `BlogPost` component could also "manage" its own
     state by doing a separate XHR request. Nevertheless, this isn't an elegant
@@ -191,20 +191,20 @@ there is a good rule of thumb when laying out your application's architecture:
     rendered in the first place?).
 
     Moving **application state** higher up generally speaking simplifies the
-    architecture of your application and allows you to keep the majority of your
+    architecture of our application and allows us to keep the majority of the
     components stateless.
 
     State is hard to manage and difficult to test. You should always try to keep
-    your components as pure as possible.
+    our components as pure as possible.
 
 * Start with props:
 
     When creating the layout of your project, you typically start with a static
-    version and then add interactivity once you reach a certain point.
+    version and then add interactivity once we reach a certain point.
 
     During this initial phase, there is almost never a need for state.
     Everything can be done using props during those initial minutes. Try to keep
-    your components as encapsulated and isolated as possible while you're
+    your components as encapsulated and isolated as possible while we're
     gradually adding interactivity to individual parts of your application.
 
     For our `<Blog />` example, we first hardcoded the `<BlogPost />`
@@ -213,7 +213,7 @@ there is a good rule of thumb when laying out your application's architecture:
 
 In general, it's usually a good idea to start with a rather static version of
 your application, in which all data is being rendered by gradually passing down
-`props` to child components. Then — as a next step — you can add custom user
+`props` to child components. Then — as a next step — we can add custom user
 interactions to your app, e.g. what happens when a user presses this button?
 Should it open a dialog by doing `this.setState({dialogOpen: true})`?
 
@@ -398,7 +398,7 @@ TypeError: onClose is not a function
 
 Uh? That's a bit weird. What happened?
 
-We forgot to bind our handler functions! Typically you would bind all you
+We forgot to bind our handler functions! Typically we would bind all you
 component's public methods in the constructor (click handlers etc.):
 
 ```js
@@ -416,9 +416,9 @@ class App extends React.Component {
 }
 ```
 
-Now everything works as expected. Good job, you just implemented a React modal!
+Now everything works as expected. Good job, we just implemented a React modal!
 
-**Advanced:** If you're looking for an actual React modal to use in your
+**Advanced:** If you're ever looking for an actual React modal to use in a
 production application, [`react-modal`](https://github.com/reactjs/react-modal)
 has a very similar API to the component we just implemented.
 
