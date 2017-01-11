@@ -166,7 +166,7 @@ In general, it's usually a good idea to start with a rather static version of yo
 
 ## `setState` in detail
 
-Now that we built our blog, let's have a look at something something a bit more interesting: A modal.
+Now that we built our blog, let's have a look at something a bit more interesting: A modal.
 
 ![Modal](https://s3.amazonaws.com/learn-verified/react-changing-state-readme-modal.png)
 
