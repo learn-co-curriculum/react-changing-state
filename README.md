@@ -260,7 +260,7 @@ class Modal extends React.Component {
     const { isOpen } = this.props;
 
     return (
-      <div className={isOpen ? 'modal modal--is-open' ? 'modal'}>
+      <div className={isOpen ? 'modal modal--is-open' : 'modal'}>
         <button>close</button>
 
         <p>Hello! I am a modal.</p>
@@ -360,3 +360,5 @@ Now everything works as expected. Good job, we just implemented a React modal!
 
 - [React: Communicate Between Components](https://facebook.github.io/react/tips/communicate-between-components.html)
 - [Autobinding, React and ES6 Classes](http://www.ian-thomas.net/autobinding-react-and-es6-classes/)
+
+<p class='util--hide'>View <a href='https://learn.co/lessons/react-changing-state'>Changing State</a> on Learn.co and start learning to code for free.</p>
