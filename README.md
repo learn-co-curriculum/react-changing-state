@@ -186,7 +186,7 @@ class App extends React.Component {
 
 A modal can either be open or closed, so our application needs to keep track of that. The `<Modal />` component itself only _knows_ whether or not it is open, it can't "open" itself — instead it has to expose some API for other components for opening it.
 
-Therefore we need to keep track of whether or not the modal is open in its parent component. In this case, that's the `<App />` component. On page load, the modal shouldn't be open. The initial state of the modal is closed (`isModalOpen = false`). We can initialize a component's state in its constructor:
+Therefore, we need to keep track of whether or not the modal is open in its parent component. In this case, that's the `<App />` component. On page load, the modal shouldn't be open. The initial state of the modal is closed (`isModalOpen = false`). We can initialize a component's state in its constructor:
 
 ```js
 class App extends React.Component {
@@ -360,3 +360,5 @@ Now everything works as expected. Good job, we just implemented a React modal!
 
 - [React: Communicate Between Components](https://facebook.github.io/react/tips/communicate-between-components.html)
 - [Autobinding, React and ES6 Classes](http://www.ian-thomas.net/autobinding-react-and-es6-classes/)
+
+<p class='util--hide'>View <a href='https://learn.co/lessons/react-changing-state'>Changing State</a> on Learn.co and start learning to code for free.</p>
